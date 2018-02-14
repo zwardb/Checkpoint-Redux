@@ -262,6 +262,7 @@ describe('Reducer', () => {
 
     xit('returns the previous state', () => {
 
+      const store = createStore(reducer)
       const prevState = store.getState();
 
       const action = { type: 'NOT_A_THING' };
