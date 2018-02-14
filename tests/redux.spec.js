@@ -90,7 +90,7 @@ describe('Action creators', () => {
       const pet = getRandomPet(DOGS);
 
       expect(removeDog(pet)).to.be.deep.equal({
-        type: 'ADD_NEW_DOG',
+        type: 'REMOVE_DOG',
         dogId: pet.id
       });
 
@@ -105,7 +105,7 @@ describe('Action creators', () => {
       const pet = getRandomPet(CATS);
 
       expect(removeCat(pet)).to.be.deep.equal({
-        type: 'ADD_NEW_CAT',
+        type: 'REMOVE_CAT',
         catId: pet.id
       });
 
@@ -117,16 +117,10 @@ describe('Action creators', () => {
 
 describe('Reducer', () => {
 
-  let store;
-
-  beforeEach('Create the store', () => {
+  xit('returns the initial state by default', () => {
 
     // creates a store (for testing) using your (real) reducer
-    store = createStore(reducer);
-
-  });
-
-  xit('returns the initial state by default', () => {
+    const store = createStore(reducer)
 
     expect(store.getState().dogs).to.be.an('array');
     expect(store.getState().cats).to.be.an('array');
@@ -138,6 +132,7 @@ describe('Reducer', () => {
 
     xit('sets the action\'s pet as the petToPreview on state (without mutating the previous state)', () => {
 
+      const store = createStore(reducer)
       const prevState = store.getState();
 
       const pet = getRandomPet(DOGS);
@@ -159,6 +154,7 @@ describe('Reducer', () => {
 
     xit('sets the action\'s pet as the petToAdopt on state (without mutating the previous state)', () => {
 
+      const store = createStore(reducer)
       const prevState = store.getState();
 
       const pet = getRandomPet(DOGS);
@@ -178,6 +174,7 @@ describe('Reducer', () => {
 
     xit('adds the new dog to the dogs array (without mutating the previous state)', () => {
 
+      const store = createStore(reducer)
       const prevState = store.getState();
 
       const pet = getRandomPet(DOGS);
@@ -198,6 +195,7 @@ describe('Reducer', () => {
 
     xit('adds the new cat to the cats array (without mutating the previous state)', () => {
 
+      const store = createStore(reducer)
       const prevState = store.getState();
 
       const pet = getRandomPet(CATS);
@@ -218,6 +216,9 @@ describe('Reducer', () => {
 
     xit('removes a dog from the dogs array (without mutating the previous state)', () => {
 
+      // adds need some pre-loaded state in the store
+      // the state.dogs array is initialized as our DOGS array
+      const store = createStore(reducer, {dogs: DOGS})
       const prevState = store.getState();
 
       const petToRemove = getRandomPet(DOGS);
@@ -238,6 +239,9 @@ describe('Reducer', () => {
 
     xit('removes a cat from the cats array (without mutating the previous state)', () => {
 
+      // adds need some pre-loaded state in the store
+      // the state.cats array is initialized as our CATS array
+      const store = createStore(reducer, {cats: CATS})
       const prevState = store.getState();
 
       const petToRemove = getRandomPet(CATS);
