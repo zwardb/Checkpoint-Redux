@@ -2,19 +2,19 @@ import { expect } from 'chai';
 import { createStore } from 'redux';
 
 // You will write these functions
-import { previewPet, adoptPet, addNewDog, addNewCat } from '../src/action-creators';
+import { previewPet, adoptPet, addNewDog, addNewCat, removeDog, removeCat } from '../src/action-creators';
 import reducer from '../src/reducer';
 
 const DOGS = [
-  { name: 'Taylor',  imgUrl: 'src/img/taylor.png'  },
-  { name: 'Reggie',  imgUrl: 'src/img/reggie.png'  },
-  { name: 'Pandora', imgUrl: 'src/img/pandora.png' }
+  { id: 1, name: 'Taylor'},
+  { id: 2, name: 'Reggie'},
+  { id: 3, name: 'Pandora'},
 ];
 
 const CATS = [
-  { name: 'Earl',    imgUrl: 'src/img/earl.png'   },
-  { name: 'Winnie',  imgUrl: 'src/img/winnie.png' },
-  { name: 'Fellini',  imgUrl: 'src/img/fellini.png' }
+  { id: 1, name: 'Earl'},
+  { id: 2, name: 'Winnie'},
+  { id: 3, name: 'Fellini'}
 ];
 
 function getRandomPet (pets) {
@@ -83,6 +83,36 @@ describe('Action creators', () => {
 
   });
 
+  describe('removeDog', () => {
+
+    xit('returns properly formatted action', () => {
+
+      const pet = getRandomPet(DOGS);
+
+      expect(removeDog(pet)).to.be.deep.equal({
+        type: 'ADD_NEW_DOG',
+        dogId: pet.id
+      });
+
+    });
+
+  });
+
+  describe('removeCat', () => {
+
+    xit('returns properly formatted action', () => {
+
+      const pet = getRandomPet(CATS);
+
+      expect(removeCat(pet)).to.be.deep.equal({
+        type: 'ADD_NEW_CAT',
+        catId: pet.id
+      });
+
+    });
+
+  });
+
 }); // end Action creators
 
 describe('Reducer', () => {
@@ -98,7 +128,8 @@ describe('Reducer', () => {
 
   xit('returns the initial state by default', () => {
 
-    // In addition to dogs and cats, we need two more fields
+    expect(store.getState().dogs).to.be.an('array');
+    expect(store.getState().cats).to.be.an('array');
     expect(store.getState().petToPreview).to.be.an('object');
     expect(store.getState().petToAdopt).to.be.an('object');
   });
@@ -177,6 +208,46 @@ describe('Reducer', () => {
 
       expect(newState.cats.length).to.be.equal(prevState.cats.length + 1);
       expect(newState.cats[newState.cats.length - 1]).to.be.deep.equal(pet);
+      expect(newState.cats).to.not.be.equal(prevState.cats);
+
+    });
+
+  });
+
+  describe('reduces on REMOVE_DOG action', () => {
+
+    xit('removes a dog from the dogs array (without mutating the previous state)', () => {
+
+      const prevState = store.getState();
+
+      const petToRemove = getRandomPet(DOGS);
+      const action = { type: 'REMOVE_DOG', dogId: petToRemove.id };
+      store.dispatch(action);
+
+      const newState = store.getState();
+
+      expect(newState.dogs.length).to.be.equal(prevState.dogs.length - 1);
+      expect(newState.dogs.find(dog => dog.id === petToRemove.id)).to.be.undefined
+      expect(newState.dogs).to.not.be.equal(prevState.dogs);
+
+    });
+
+  });
+
+  describe('reduces on REMOVE_CAT action', () => {
+
+    xit('removes a cat from the cats array (without mutating the previous state)', () => {
+
+      const prevState = store.getState();
+
+      const petToRemove = getRandomPet(CATS);
+      const action = { type: 'REMOVE_CAT', catId: petToRemove.id };
+      store.dispatch(action);
+
+      const newState = store.getState();
+
+      expect(newState.cats.length).to.be.equal(prevState.cats.length - 1);
+      expect(newState.cats.find(cat => cat.id === petToRemove.id)).to.be.undefined
       expect(newState.cats).to.not.be.equal(prevState.cats);
 
     });

@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   devtool: 'source-map',
-  entry: './src/main.js',
+  entry: './src/index.js',
   output: {
     path: __dirname,
     publicPath: '/',
