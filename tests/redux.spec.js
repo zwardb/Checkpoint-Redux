@@ -227,7 +227,7 @@ describe('Reducer', () => {
 
       // adds need some pre-loaded state in the store
       // the state.dogs array is initialized as our DOGS array
-      const store = createStore(reducer, {dogs: DOGS})
+      const store = createStore(reducer, {dogs: DOGS, cats: [], petToPreview: {}, petToAdopt: {}})
       const prevState = store.getState();
 
       const petToRemove = getRandomPet(DOGS);
@@ -252,7 +252,7 @@ describe('Reducer', () => {
 
       // adds need some pre-loaded state in the store
       // the state.cats array is initialized as our CATS array
-      const store = createStore(reducer, {cats: CATS})
+      const store = createStore(reducer, {dogs: [], cats: CATS, petToPreview: {}, petToAdopt: {}})
       const prevState = store.getState();
 
       const petToRemove = getRandomPet(CATS);
