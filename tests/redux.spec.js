@@ -145,7 +145,10 @@ describe('Reducer', () => {
       expect(store.getState().petToPreview).to.be.deep.equal(pet);
       // ensures we didn't mutate anything - regular equality compares the location of the object in memory
       expect(newState.petToPreview).to.not.be.equal(prevState.petToPreview);
-
+      // ensures that unaffected state is preserved
+      expect(newState.dogs).to.deep.equal(prevState.dogs)
+      expect(newState.cats).to.deep.equal(prevState.cats)
+      expect(newState.petToAdopt).to.deep.equal(prevState.petToAdopt)
     });
 
   });
@@ -165,7 +168,9 @@ describe('Reducer', () => {
 
       expect(newState.petToAdopt).to.be.deep.equal(pet);
       expect(newState.petToAdopt).to.not.be.equal(prevState.petToAdopt);
-
+      expect(newState.dogs).to.deep.equal(prevState.dogs)
+      expect(newState.cats).to.deep.equal(prevState.cats)
+      expect(newState.petToPreview).to.deep.equal(prevState.petToPreview)
     });
 
   });
@@ -186,7 +191,9 @@ describe('Reducer', () => {
       expect(newState.dogs.length).to.be.equal(prevState.dogs.length + 1);
       expect(newState.dogs[newState.dogs.length - 1]).to.be.deep.equal(pet);
       expect(newState.dogs).to.not.be.equal(prevState.dogs);
-
+      expect(newState.cats).to.deep.equal(prevState.cats)
+      expect(newState.petToAdopt).to.deep.equal(prevState.petToAdopt)
+      expect(newState.petToPreview).to.deep.equal(prevState.petToPreview)
     });
 
   });
@@ -207,7 +214,9 @@ describe('Reducer', () => {
       expect(newState.cats.length).to.be.equal(prevState.cats.length + 1);
       expect(newState.cats[newState.cats.length - 1]).to.be.deep.equal(pet);
       expect(newState.cats).to.not.be.equal(prevState.cats);
-
+      expect(newState.dogs).to.deep.equal(prevState.dogs)
+      expect(newState.petToAdopt).to.deep.equal(prevState.petToAdopt)
+      expect(newState.petToPreview).to.deep.equal(prevState.petToPreview)
     });
 
   });
@@ -218,7 +227,7 @@ describe('Reducer', () => {
 
       // adds need some pre-loaded state in the store
       // the state.dogs array is initialized as our DOGS array
-      const store = createStore(reducer, {dogs: DOGS})
+      const store = createStore(reducer, {dogs: DOGS, cats: [], petToPreview: {}, petToAdopt: {}})
       const prevState = store.getState();
 
       const petToRemove = getRandomPet(DOGS);
@@ -230,7 +239,9 @@ describe('Reducer', () => {
       expect(newState.dogs.length).to.be.equal(prevState.dogs.length - 1);
       expect(newState.dogs.find(dog => dog.id === petToRemove.id)).to.be.undefined
       expect(newState.dogs).to.not.be.equal(prevState.dogs);
-
+      expect(newState.cats).to.deep.equal(prevState.cats)
+      expect(newState.petToAdopt).to.deep.equal(prevState.petToAdopt)
+      expect(newState.petToPreview).to.deep.equal(prevState.petToPreview)
     });
 
   });
@@ -241,7 +252,7 @@ describe('Reducer', () => {
 
       // adds need some pre-loaded state in the store
       // the state.cats array is initialized as our CATS array
-      const store = createStore(reducer, {cats: CATS})
+      const store = createStore(reducer, {dogs: [], cats: CATS, petToPreview: {}, petToAdopt: {}})
       const prevState = store.getState();
 
       const petToRemove = getRandomPet(CATS);
@@ -253,7 +264,9 @@ describe('Reducer', () => {
       expect(newState.cats.length).to.be.equal(prevState.cats.length - 1);
       expect(newState.cats.find(cat => cat.id === petToRemove.id)).to.be.undefined
       expect(newState.cats).to.not.be.equal(prevState.cats);
-
+      expect(newState.dogs).to.deep.equal(prevState.dogs)
+      expect(newState.petToAdopt).to.deep.equal(prevState.petToAdopt)
+      expect(newState.petToPreview).to.deep.equal(prevState.petToPreview)
     });
 
   });
