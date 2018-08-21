@@ -2,7 +2,8 @@
   "name": "redux-practice",
   "version": "1.0.0",
   "scripts": {
-    "test": "mocha ./tests/*.spec.js --watch --compilers js:babel-register"
+    "test": "mocha ./tests/*.spec.js --watch --compilers js:babel-register",
+    "grade": "mocha ./tests/*.spec.js --reporter spec --timeout 1000 --compilers js:babel-register"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
