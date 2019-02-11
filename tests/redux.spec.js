@@ -6,15 +6,15 @@ import { previewPet, adoptPet, addNewDog, addNewCat, removeDog, removeCat } from
 import reducer from '../src/reducer';
 
 const DOGS = [
-  { id: 1, name: 'Taylor'},
   { id: 2, name: 'Reggie'},
   { id: 3, name: 'Pandora'},
+  { id: 1, name: 'Taylor'}
 ];
 
 const CATS = [
-  { id: 1, name: 'Earl'},
+  { id: 3, name: 'Fellini' },
   { id: 2, name: 'Winnie'},
-  { id: 3, name: 'Fellini'}
+  { id: 1, name: 'Earl'}
 ];
 
 function getRandomPet (pets) {
