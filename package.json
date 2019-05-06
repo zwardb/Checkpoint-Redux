@@ -2,20 +2,23 @@
   "name": "redux-practice",
   "version": "1.0.0",
   "scripts": {
-    "test": "mocha ./tests/*.spec.js --watch --compilers js:babel-register",
-    "grade": "mocha ./tests/*.spec.js --reporter spec --timeout 1000 --compilers js:babel-register"
+    "test": "mocha ./tests/*.spec.js --watch --require babel-polyfill --require babel-register"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-stage-2": "^6.24.1",
-    "babel-register": "^6.18.0",
+    "babel-register": "^6.26.0",
     "chai": "^3.5.0",
     "mocha": "^3.1.2",
     "webpack": "^3.9.1"
   },
   "dependencies": {
-    "redux": "^3.6.0"
+    "axios": "^0.18.0",
+    "axios-mock-adapter": "^1.16.0",
+    "babel-polyfill": "^6.26.0",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.3.0"
   }
 }
