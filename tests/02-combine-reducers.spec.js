@@ -27,25 +27,24 @@
  * scoped to either the `age`, `cash`, or `possessions` slice of state.
  *
  */
-import { expect } from 'chai';
-import { createStore, combineReducers } from 'redux';
+import { expect } from "chai";
+import { createStore, combineReducers } from "redux";
 
-const RECEIVED_A_PAYCHECK = 'RECEIVED_A_PAYCHECK';
-const BOUGHT_AN_ITEM = 'BOUGHT_AN_ITEM';
-const HAD_A_BIRTHDAY = 'HAD_A_BIRTHDAY';
+const RECEIVED_A_PAYCHECK = "RECEIVED_A_PAYCHECK";
+const BOUGHT_AN_ITEM = "BOUGHT_AN_ITEM";
+const HAD_A_BIRTHDAY = "HAD_A_BIRTHDAY";
 
-function createReceivedAPaycheckAction (amountAfterTaxes) {
-  return { type: RECEIVED_A_PAYCHECK, amountAfterTaxes }
+function createReceivedAPaycheckAction(amountAfterTaxes) {
+  return { type: RECEIVED_A_PAYCHECK, amountAfterTaxes };
 }
 
-function createBoughtAnItemAction (item, price) {
-  return { type: BOUGHT_AN_ITEM, item, price }
+function createBoughtAnItemAction(item, price) {
+  return { type: BOUGHT_AN_ITEM, item, price };
 }
 
-function createHadABirthdayAction (age) {
-  return { type: HAD_A_BIRTHDAY, age }
+function createHadABirthdayAction(age) {
+  return { type: HAD_A_BIRTHDAY, age };
 }
-
 
 //function originalReducer (priorState={}, action) {
 //  switch (action.type) {
@@ -70,74 +69,75 @@ function createHadABirthdayAction (age) {
 //  }
 //}
 
-function ageReducer (age = 0, action) {
+function ageReducer(age = 0, action) {
   switch (action.type) {
-    default: return age
+    default:
+      return age;
   }
 }
 
-function possessionsReducer (possessions=[], action) {
+function possessionsReducer(possessions = [], action) {
   switch (action.type) {
     default:
-      return possessions
+      return possessions;
   }
 }
 
-function cashReducer (cash = 0, action) {
+function cashReducer(cash = 0, action) {
   switch (action.type) {
     default:
-      return cash
+      return cash;
   }
 }
 
 const combinedReducers = combineReducers({
   age: ageReducer,
   possessions: possessionsReducer,
-  cash: cashReducer,
-})
+  cash: cashReducer
+});
 
-let store
+let store;
 
 beforeEach(() => {
-  store = createStore(combinedReducers)
+  store = createStore(combinedReducers);
   // store = createStore(originalReducer, {
   //   age: 0,
   //   cash: 0,
   //   possessions: [],
   // })
-})
+});
 
-describe('Combine Reducers', () => {
-  it('increments age when a person has a birthday', () => {
-    store.dispatch(createHadABirthdayAction())
-    store.dispatch(createHadABirthdayAction())
-    store.dispatch(createHadABirthdayAction())
+describe("Combine Reducers", () => {
+  it("increments age when a person has a birthday", () => {
+    store.dispatch(createHadABirthdayAction());
+    store.dispatch(createHadABirthdayAction());
+    store.dispatch(createHadABirthdayAction());
 
-    expect(store.getState().age).to.equal(3)
-  })
+    expect(store.getState().age).to.equal(3);
+  });
 
-  it('adds to cash when a person receives a paycheck', () => {
-    store.dispatch(createReceivedAPaycheckAction(2300))
-    store.dispatch(createReceivedAPaycheckAction(2300))
+  it("adds to cash when a person receives a paycheck", () => {
+    store.dispatch(createReceivedAPaycheckAction(2300));
+    store.dispatch(createReceivedAPaycheckAction(2300));
 
-    expect(store.getState().cash).to.equal(4600)
-  })
+    expect(store.getState().cash).to.equal(4600);
+  });
 
-  it('subtracts from cash when a person buys an item', () => {
-    store.dispatch(createReceivedAPaycheckAction(1000))
-    store.dispatch(createBoughtAnItemAction('A Cheap Boat', 500))
+  it("subtracts from cash when a person buys an item", () => {
+    store.dispatch(createReceivedAPaycheckAction(1000));
+    store.dispatch(createBoughtAnItemAction("A Cheap Boat", 500));
 
-    expect(store.getState().cash).to.equal(500)
-  })
+    expect(store.getState().cash).to.equal(500);
+  });
 
-  it('lists new purchases after a person buys an item', () => {
-    store.dispatch(createReceivedAPaycheckAction(1000000))
-    store.dispatch(createBoughtAnItemAction('A Modest Boat', 45000))
-    store.dispatch(createBoughtAnItemAction('A Modest Yacht', 450000))
+  it("lists new purchases after a person buys an item", () => {
+    store.dispatch(createReceivedAPaycheckAction(1000000));
+    store.dispatch(createBoughtAnItemAction("A Modest Boat", 45000));
+    store.dispatch(createBoughtAnItemAction("A Modest Yacht", 450000));
 
     expect(store.getState().possessions).to.deep.equal([
-      'A Modest Boat',
-      'A Modest Yacht'
-    ])
-  })
-})
+      "A Modest Boat",
+      "A Modest Yacht"
+    ]);
+  });
+});
