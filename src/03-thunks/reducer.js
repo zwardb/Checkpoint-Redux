@@ -1,4 +1,5 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from "redux";
+import axios from "axios";
 
 const GOT_BALLOONS = "GOT_BALLOONS";
 const BALLOONS_ERROR = "BALLOONS_ERROR";
@@ -42,4 +43,4 @@ const combinedReducers = combineReducers({
   balloonsError: balloonsErrorReducer
 });
 
-export default combineReducers
+export default combinedReducers;

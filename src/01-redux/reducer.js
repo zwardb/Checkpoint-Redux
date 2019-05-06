@@ -8,6 +8,6 @@ const initialState = {
 //     This means that if we set a default parameter value, we can use that as our initial return value
 //
 //  2. The action object, which we get whenever we use `store.dispatch`
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   // your code here
 }

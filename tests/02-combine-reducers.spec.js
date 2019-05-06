@@ -32,8 +32,8 @@ import combinedReducers, {
   createHadABirthdayAction,
   createReceivedAPaycheckAction,
   createBoughtAnItemAction
-} from "../src/02-combine-reducers/reducer"
-
+} from "../src/02-combine-reducers/reducer";
+import { createStore } from "redux";
 
 let store;
 

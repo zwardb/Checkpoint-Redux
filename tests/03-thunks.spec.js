@@ -33,9 +33,9 @@ import { createStore, applyMiddleware } from "redux";
 import MockAxiosAdapter from "axios-mock-adapter";
 import thunkMiddleware from "redux-thunk";
 
-import combineReducers, {
+import combinedReducers, {
   createGetBalloonsThunk
-} from "../src/03-thunks/reducer"
+} from "../src/03-thunks/reducer";
 
 let store;
 let mockAxios;
@@ -59,7 +59,7 @@ describe("Thunks", () => {
 
     xit("sets the recieved balloons on state", async () => {
       await store.dispatch(createGetBalloonsThunk());
-      const state = store.getState()
+      const state = store.getState();
       expect(state.balloons).to.deep.equal([
         "red balloon",
         "yellow balloon",
@@ -75,7 +75,7 @@ describe("Thunks", () => {
 
     xit("sets the thrown error on state", async () => {
       await store.dispatch(createGetBalloonsThunk());
-      const state = store.getState()
+      const state = store.getState();
       expect(state.balloonsError.response.data).to.deep.equal(
         "No balloons today!"
       );

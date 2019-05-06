@@ -66,4 +66,4 @@ const combinedReducers = combineReducers({
   cash: cashReducer
 });
 
-export default combineReducers
+export default combinedReducers;
