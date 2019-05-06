@@ -8,9 +8,10 @@
  *   balloonsError: null
  * }
  *
- * Look at the file `src/03-thunks/reducer.js`
+ * Look at the files in `src/03-thunks/`
  *
- * Included in that file is a function named: `createGetBalloonsThunk`.
+ * Included in `src/03-thunks/action-creators.js`
+ *   is a function named: `createGetBalloonsThunk`.
  *
  * This is for you to implement as a thunk creator.
  *
@@ -27,15 +28,14 @@
  * object on state at the `balloonsError` key.
  *
  */
+import MockAxiosAdapter from "axios-mock-adapter";
 import { expect } from "chai";
 import axios from "axios";
 import { createStore, applyMiddleware } from "redux";
-import MockAxiosAdapter from "axios-mock-adapter";
 import thunkMiddleware from "redux-thunk";
 
-import combinedReducers, {
-  createGetBalloonsThunk
-} from "../src/03-thunks/reducer";
+import combinedReducers from "../src/03-thunks/reducer";
+import { createGetBalloonsThunk } from "../src/03-thunks/action-creators";
 
 let store;
 let mockAxios;

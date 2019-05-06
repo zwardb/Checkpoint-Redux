@@ -1,20 +1,9 @@
-import { createStore, combineReducers } from "redux";
-
-export const RECEIVED_A_PAYCHECK = "RECEIVED_A_PAYCHECK";
-export const BOUGHT_AN_ITEM = "BOUGHT_AN_ITEM";
-export const HAD_A_BIRTHDAY = "HAD_A_BIRTHDAY";
-
-export function createReceivedAPaycheckAction(amountAfterTaxes) {
-  return { type: RECEIVED_A_PAYCHECK, amountAfterTaxes };
-}
-
-export function createBoughtAnItemAction(item, price) {
-  return { type: BOUGHT_AN_ITEM, item, price };
-}
-
-export function createHadABirthdayAction(age) {
-  return { type: HAD_A_BIRTHDAY, age };
-}
+import { combineReducers } from "redux";
+import {
+  RECEIVED_A_PAYCHECK,
+  BOUGHT_AN_ITEM,
+  HAD_A_BIRTHDAY
+} from "./action-creators";
 
 //function originalReducer (priorState={}, action) {
 //  switch (action.type) {
@@ -41,6 +30,7 @@ export function createHadABirthdayAction(age) {
 
 function ageReducer(age = 0, action) {
   switch (action.type) {
+    /* add missing reducer case(s) here */
     default:
       return age;
   }
@@ -48,6 +38,7 @@ function ageReducer(age = 0, action) {
 
 function possessionsReducer(possessions = [], action) {
   switch (action.type) {
+    /* add missing reducer case(s) here */
     default:
       return possessions;
   }
@@ -55,6 +46,7 @@ function possessionsReducer(possessions = [], action) {
 
 function cashReducer(cash = 0, action) {
   switch (action.type) {
+    /* add missing reducer case(s)here */
     default:
       return cash;
   }

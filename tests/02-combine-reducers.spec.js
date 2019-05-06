@@ -4,18 +4,18 @@
  * The default initial of the store is the following:
  *
  * {
- *   age: Number,
- *   cash: ,
+ *   age: 0,
+ *   cash: 0,
  *   posessions, []
  * }
  *
- * Look at the file: `src/02-combine-reducers/reducer.js`
+ * Look at the files in: `src/02-combine-reducers/`
  *
- * Included in that file is a reducer named `originalReducer`. This code is
+ * Included in that directory is a reducer named `originalReducer`. This code is
  * commented out, and represents legacy code to refactor. All these tests pass
  * with the `originalReducer` function.
  *
- * Also included in this file are the empty reducer functions named
+ * Also included in that director are the empty reducer functions named
  * `ageReducer`, `cashReducer`, and `possessionsReducer`. These are used as
  * reducer functions in a call to `combineReducers`
  *
@@ -28,12 +28,13 @@
  *
  */
 import { expect } from "chai";
-import combinedReducers, {
+import { createStore } from "redux";
+import combinedReducers from "../src/02-combine-reducers/reducer";
+import {
   createHadABirthdayAction,
   createReceivedAPaycheckAction,
   createBoughtAnItemAction
-} from "../src/02-combine-reducers/reducer";
-import { createStore } from "redux";
+} from "../src/02-combine-reducers/action-creators";
 
 let store;
 

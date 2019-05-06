@@ -1,24 +1,7 @@
 import { combineReducers } from "redux";
 import axios from "axios";
 
-const GOT_BALLOONS = "GOT_BALLOONS";
-const BALLOONS_ERROR = "BALLOONS_ERROR";
-
-export function createGotBaloonsAction(balloons) {
-  return { type: GOT_BALLOONS, balloons };
-}
-
-export function createBalloonsErrorAction(error) {
-  return { type: BALLOONS_ERROR, error };
-}
-
-export function createGetBalloonsThunk() {
-  /* ============================== */
-  /* ============================== */
-  /* Write your thunk creator here. */
-  /* ============================== */
-  /* ============================== */
-}
+import { GOT_BALLOONS, BALLOONS_ERROR } from "./action-creators";
 
 function balloonsReducer(balloons = [], action) {
   switch (action.type) {
