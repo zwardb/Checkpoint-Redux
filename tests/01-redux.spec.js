@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import { createStore } from 'redux';
 
 // You will write these functions
-import { previewPet, adoptPet, addNewDog, addNewCat, removeDog, removeCat } from '../src/action-creators';
-import reducer from '../src/reducer';
+import { previewPet, adoptPet, addNewDog, addNewCat, removeDog, removeCat } from '../src/01-redux/action-creators';
+import reducer from '../src/01-redux/reducer';
 
 const DOGS = [
   { id: 2, name: 'Reggie'},

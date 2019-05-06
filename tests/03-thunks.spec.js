@@ -1,16 +1,16 @@
 /*
  * READ THIS FIRST
  *
- * This test file includes action creators, and a reducer for a small redux store.
- *
- * The default initial of the store is the following:
+ * The default initial state of the store is the following:
  *
  * {
  *   balloons: [],
  *   balloonsError: null
  * }
  *
- * Included in this file is a function named: `createGetBalloonsThunk`.
+ * Look at the file `src/03-thunks/reducer.js`
+ *
+ * Included in that file is a function named: `createGetBalloonsThunk`.
  *
  * This is for you to implement as a thunk creator.
  *
@@ -29,51 +29,13 @@
  */
 import { expect } from "chai";
 import axios from "axios";
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import MockAxiosAdapter from "axios-mock-adapter";
 import thunkMiddleware from "redux-thunk";
 
-const GOT_BALLOONS = "GOT_BALLOONS";
-const BALLOONS_ERROR = "BALLOONS_ERROR";
-
-function createGotBaloonsAction(balloons) {
-  return { type: GOT_BALLOONS, balloons };
-}
-
-function createBalloonsErrorAction(error) {
-  return { type: BALLOONS_ERROR, error };
-}
-
-function createGetBalloonsThunk() {
-  /* ============================== */
-  /* ============================== */
-  /* Write your thunk creator here. */
-  /* ============================== */
-  /* ============================== */
-}
-
-function balloonsReducer(balloons = [], action) {
-  switch (action.type) {
-    case GOT_BALLOONS:
-      return action.balloons;
-    default:
-      return balloons;
-  }
-}
-
-function balloonsErrorReducer(error = null, action) {
-  switch (action.type) {
-    case BALLOONS_ERROR:
-      return action.error;
-    default:
-      return error;
-  }
-}
-
-const combinedReducer = combineReducers({
-  balloons: balloonsReducer,
-  balloonsError: balloonsErrorReducer
-});
+import combineReducers, {
+  createGetBalloonsThunk
+} from "../src/03-thunks/reducer"
 
 let store;
 let mockAxios;
@@ -81,7 +43,7 @@ let mockAxios;
 describe("Thunks", () => {
   beforeEach(() => {
     mockAxios = new MockAxiosAdapter(axios);
-    store = createStore(combinedReducer, applyMiddleware(thunkMiddleware));
+    store = createStore(combinedReducers, applyMiddleware(thunkMiddleware));
   });
 
   afterEach(() => {

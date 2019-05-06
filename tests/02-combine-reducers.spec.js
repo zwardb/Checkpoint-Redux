@@ -1,8 +1,6 @@
 /*
  * READ THIS FIRST
  *
- * This test file includes action creators, and a reducer for a small redux store.
- *
  * The default initial of the store is the following:
  *
  * {
@@ -11,7 +9,9 @@
  *   posessions, []
  * }
  *
- * Included in this file is a reducer named `originalReducer`. This code is
+ * Look at the file: `src/02-combine-reducers/reducer.js`
+ *
+ * Included in that file is a reducer named `originalReducer`. This code is
  * commented out, and represents legacy code to refactor. All these tests pass
  * with the `originalReducer` function.
  *
@@ -28,83 +28,17 @@
  *
  */
 import { expect } from "chai";
-import { createStore, combineReducers } from "redux";
+import combinedReducers, {
+  createHadABirthdayAction,
+  createReceivedAPaycheckAction,
+  createBoughtAnItemAction
+} from "../src/02-combine-reducers/reducer"
 
-const RECEIVED_A_PAYCHECK = "RECEIVED_A_PAYCHECK";
-const BOUGHT_AN_ITEM = "BOUGHT_AN_ITEM";
-const HAD_A_BIRTHDAY = "HAD_A_BIRTHDAY";
-
-function createReceivedAPaycheckAction(amountAfterTaxes) {
-  return { type: RECEIVED_A_PAYCHECK, amountAfterTaxes };
-}
-
-function createBoughtAnItemAction(item, price) {
-  return { type: BOUGHT_AN_ITEM, item, price };
-}
-
-function createHadABirthdayAction(age) {
-  return { type: HAD_A_BIRTHDAY, age };
-}
-
-//function originalReducer (priorState={}, action) {
-//  switch (action.type) {
-//    case RECEIVED_A_PAYCHECK:
-//      return {
-//        ...priorState,
-//        cash: priorState.cash + action.amountAfterTaxes,
-//      }
-//    case HAD_A_BIRTHDAY:
-//      return {
-//        ...priorState,
-//        age: priorState.age + 1
-//      }
-//    case BOUGHT_AN_ITEM:
-//      return {
-//        ...priorState,
-//        cash: priorState.cash - action.price,
-//        possessions: [...priorState.possessions, action.item]
-//      }
-//    default:
-//      return priorState
-//  }
-//}
-
-function ageReducer(age = 0, action) {
-  switch (action.type) {
-    default:
-      return age;
-  }
-}
-
-function possessionsReducer(possessions = [], action) {
-  switch (action.type) {
-    default:
-      return possessions;
-  }
-}
-
-function cashReducer(cash = 0, action) {
-  switch (action.type) {
-    default:
-      return cash;
-  }
-}
-
-const combinedReducers = combineReducers({
-  age: ageReducer,
-  possessions: possessionsReducer,
-  cash: cashReducer
-});
 
 let store;
 
 beforeEach(() => {
   store = createStore(combinedReducers);
-  // store = createStore(originalReducer, {
-  //   age: 0,
-  //   cash: 0,
-  //   possessions: [],
-  // })
 });
 
 describe("Combine Reducers", () => {
