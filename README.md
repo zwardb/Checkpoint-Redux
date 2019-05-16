@@ -7,4 +7,3 @@
 ### Running the test
 
 `npm test`
-
