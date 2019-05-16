@@ -10,6 +10,6 @@ export function createBoughtAnItemAction(item, price) {
   return { type: BOUGHT_AN_ITEM, item, price };
 }
 
-export function createHadABirthdayAction(age) {
-  return { type: HAD_A_BIRTHDAY, age };
+export function createHadABirthdayAction() {
+  return { type: HAD_A_BIRTHDAY };
 }

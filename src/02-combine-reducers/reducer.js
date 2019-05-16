@@ -46,7 +46,7 @@ function possessionsReducer(possessions = [], action) {
 
 function cashReducer(cash = 0, action) {
   switch (action.type) {
-    /* add missing reducer case(s)here */
+    /* add missing reducer case(s) here */
     default:
       return cash;
   }

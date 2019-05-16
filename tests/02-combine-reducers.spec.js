@@ -28,18 +28,22 @@
  *
  */
 import { expect } from "chai";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import combinedReducers from "../src/02-combine-reducers/reducer";
 import {
   createHadABirthdayAction,
   createReceivedAPaycheckAction,
   createBoughtAnItemAction
 } from "../src/02-combine-reducers/action-creators";
+import enforceImmutableState from 'redux-immutable-state-invariant';
 
 let store;
 
 beforeEach(() => {
-  store = createStore(combinedReducers);
+  store = createStore(
+    combinedReducers,
+    applyMiddleware(enforceImmutableState())
+  );
 });
 
 describe("Combine Reducers", () => {

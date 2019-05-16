@@ -1,5 +1,6 @@
 import { expect } from "chai";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import enforceImmutableState from 'redux-immutable-state-invariant';
 
 // You will write these functions
 import {
@@ -99,7 +100,7 @@ describe("Action creators", () => {
 describe("Reducer", () => {
   xit("returns the initial state by default", () => {
     // creates a store (for testing) using your (real) reducer
-    const store = createStore(reducer);
+    const store = createStore(reducer, applyMiddleware(enforceImmutableState()));
 
     expect(store.getState().dogs).to.be.an("array");
     expect(store.getState().cats).to.be.an("array");
@@ -109,7 +110,7 @@ describe("Reducer", () => {
 
   describe("reduces on PREVIEW_PET action", () => {
     xit("sets the action's pet as the petToPreview on state (without mutating the previous state)", () => {
-      const store = createStore(reducer);
+      const store = createStore(reducer, applyMiddleware(enforceImmutableState()));
       const prevState = store.getState();
 
       const pet = getRandomPet(DOGS);
@@ -131,7 +132,7 @@ describe("Reducer", () => {
 
   describe("reduces on ADOPT_PET action", () => {
     xit("sets the action's pet as the petToAdopt on state (without mutating the previous state)", () => {
-      const store = createStore(reducer);
+      const store = createStore(reducer, applyMiddleware(enforceImmutableState()));
       const prevState = store.getState();
 
       const pet = getRandomPet(DOGS);
@@ -150,7 +151,7 @@ describe("Reducer", () => {
 
   describe("reduces on ADD_NEW_DOG action", () => {
     xit("adds the new dog to the dogs array (without mutating the previous state)", () => {
-      const store = createStore(reducer);
+      const store = createStore(reducer, applyMiddleware(enforceImmutableState()));
       const prevState = store.getState();
 
       const pet = getRandomPet(DOGS);
@@ -170,7 +171,7 @@ describe("Reducer", () => {
 
   describe("reduces on ADD_NEW_CAT action", () => {
     xit("adds the new cat to the cats array (without mutating the previous state)", () => {
-      const store = createStore(reducer);
+      const store = createStore(reducer, applyMiddleware(enforceImmutableState()));
       const prevState = store.getState();
 
       const pet = getRandomPet(CATS);
@@ -197,7 +198,7 @@ describe("Reducer", () => {
         cats: [],
         petToPreview: {},
         petToAdopt: {}
-      });
+      }, applyMiddleware(enforceImmutableState()));
       const prevState = store.getState();
 
       const petToRemove = getRandomPet(DOGS);
@@ -225,7 +226,7 @@ describe("Reducer", () => {
         cats: CATS,
         petToPreview: {},
         petToAdopt: {}
-      });
+      }, applyMiddleware(enforceImmutableState()));
       const prevState = store.getState();
 
       const petToRemove = getRandomPet(CATS);
@@ -246,7 +247,7 @@ describe("Reducer", () => {
 
   describe("handles unrecognized actions", () => {
     xit("returns the previous state", () => {
-      const store = createStore(reducer);
+      const store = createStore(reducer, applyMiddleware(enforceImmutableState()));
       const prevState = store.getState();
 
       const action = { type: "NOT_A_THING" };

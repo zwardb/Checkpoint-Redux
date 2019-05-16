@@ -33,6 +33,7 @@ import { expect } from "chai";
 import axios from "axios";
 import { createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
+import enforceImmutableState from 'redux-immutable-state-invariant';
 
 import combinedReducers from "../src/03-thunks/reducer";
 import { createGetBalloonsThunk } from "../src/03-thunks/action-creators";
@@ -43,7 +44,10 @@ let mockAxios;
 describe("Thunks", () => {
   beforeEach(() => {
     mockAxios = new MockAxiosAdapter(axios);
-    store = createStore(combinedReducers, applyMiddleware(thunkMiddleware));
+    store = createStore(
+      combinedReducers,
+      applyMiddleware(thunkMiddleware, enforceImmutableState())
+    );
   });
 
   afterEach(() => {
