@@ -61,7 +61,7 @@ describe("Thunks", () => {
         .reply(200, ["red balloon", "yellow balloon", "green balloon"]);
     });
 
-    xit("sets the recieved balloons on state", async () => {
+    xit("sets the received balloons on state", async () => {
       await store.dispatch(createGetBalloonsThunk());
       const state = store.getState();
       expect(state.balloons).to.deep.equal([

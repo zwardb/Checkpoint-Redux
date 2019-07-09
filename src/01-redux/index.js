@@ -7,4 +7,4 @@ import { createStore, applyMiddleware } from "redux";
 import reducer from "./reducer";
 import enforceImmutableState from 'redux-immutable-state-invariant';
 
-export default createStore(reducer, applyMiddleware(enforceImmutableState());
+export default createStore(reducer, applyMiddleware(enforceImmutableState()));
